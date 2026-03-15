@@ -132,6 +132,11 @@ def install_system_packages():
 
 # ── App directory ──────────────────────────────────────────────────────────────
 
+def _is_source_dir() -> bool:
+    """Check if install.py is being run from a local clone (hackingtool.py exists alongside it)."""
+    return (Path(__file__).resolve().parent / "hackingtool.py").exists()
+
+
 def prepare_install_dir():
     if APP_INSTALL_DIR.exists():
         console.print(f"[warning]{APP_INSTALL_DIR} already exists.[/warning]")
@@ -142,9 +147,23 @@ def prepare_install_dir():
     APP_INSTALL_DIR.mkdir(parents=True, exist_ok=True)
 
 
-def git_clone() -> bool:
+def install_source() -> bool:
+    """Clone the repo or copy from local source if already in a clone."""
+    source_dir = Path(__file__).resolve().parent
+
+    if _is_source_dir() and source_dir != APP_INSTALL_DIR:
+        # Already in a local clone — copy instead of re-cloning
+        console.print(f"[dim]Copying source from {source_dir}...[/dim]")
+        # Remove first to ensure clean copy (prepare_install_dir may have created it)
+        if APP_INSTALL_DIR.exists():
+            subprocess.run(["rm", "-rf", str(APP_INSTALL_DIR)], check=True)
+        subprocess.run(["cp", "-a", str(source_dir), str(APP_INSTALL_DIR)], check=True)
+        console.print("[success]✔ Source copied (no re-clone needed)[/success]")
+        return True
+
+    # Not running from source — clone from GitHub
     console.print(f"[dim]Cloning {REPO_URL}...[/dim]")
-    r = subprocess.run(["git", "clone", REPO_URL, str(APP_INSTALL_DIR)], check=False)
+    r = subprocess.run(["git", "clone", "--depth", "1", REPO_URL, str(APP_INSTALL_DIR)], check=False)
     if r.returncode == 0:
         console.print("[success]✔ Repository cloned[/success]")
         return True
@@ -223,7 +242,7 @@ def main():
 
     prepare_install_dir()
 
-    if not git_clone():
+    if not install_source():
         sys.exit(1)
 
     with Progress(SpinnerColumn(), TextColumn("[progress.description]{task.description}")) as p:

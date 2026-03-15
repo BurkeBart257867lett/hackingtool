@@ -75,18 +75,25 @@ Issues or PRs that don't follow the title format may be closed without review.
 
 ## Installation
 
-**Requires Python 3.10+**
+### One-liner (recommended)
+
+```bash
+curl -sSL https://raw.githubusercontent.com/Z4nzu/hackingtool/master/install.sh | sudo bash
+```
+
+This handles everything — installs prerequisites, clones the repo, sets up a venv, and creates the `hackingtool` command.
+
+### Manual install
 
 ```bash
 git clone https://github.com/Z4nzu/hackingtool.git
 cd hackingtool
-chmod -R 755 .
-sudo python3 install.py
+sudo python3 install.py   # detects local source, copies instead of re-cloning
 ```
 
 Then run:
 ```bash
-sudo hackingtool
+hackingtool
 ```
 
 ## Docker
