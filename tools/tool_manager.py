@@ -1,126 +1,97 @@
-# coding=utf-8
 import os
 import sys
+import subprocess
 from time import sleep
 
-from core import HackingTool
-from core import HackingToolsCollection
-from rich.console import Console
-from rich.theme import Theme
-from rich.table import Table
-from rich.panel import Panel
-from rich.prompt import Prompt
+from rich.prompt import Confirm
 
-_theme = Theme({"purple": "#7B61FF"})
-console = Console(theme=_theme)
+from core import HackingTool, HackingToolsCollection, console
+from constants import APP_INSTALL_DIR, APP_BIN_PATH, USER_CONFIG_DIR, REPO_URL
 
 
 class UpdateTool(HackingTool):
     TITLE = "Update Tool or System"
-    DESCRIPTION = "Update Tool or System"
+    DESCRIPTION = "Update system packages or pull the latest hackingtool code"
 
     def __init__(self):
-        super(UpdateTool, self).__init__([
+        super().__init__([
             ("Update System", self.update_sys),
-            ("Update Hackingtool", self.update_ht)
+            ("Update Hackingtool", self.update_ht),
         ], installable=False, runnable=False)
 
     def update_sys(self):
-        os.system("sudo apt update && sudo apt full-upgrade -y")
-        os.system("sudo apt-get install tor openssl curl && sudo apt-get update tor openssl curl")
-        os.system("sudo apt-get install python3-pip")
+        from os_detect import CURRENT_OS, PACKAGE_UPDATE_CMDS
+        mgr = CURRENT_OS.pkg_manager
+        cmd = PACKAGE_UPDATE_CMDS.get(mgr)
+        if cmd:
+            priv = "" if CURRENT_OS.system == "macos" else "sudo "
+            os.system(f"{priv}{cmd}")
+        else:
+            console.print("[warning]Unknown package manager — update manually.[/warning]")
 
     def update_ht(self):
-        os.system("sudo chmod +x /etc/;"
-                  "sudo chmod +x /usr/share/doc;"
-                  "sudo rm -rf /usr/share/doc/hackingtool/;"
-                  "cd /etc/;"
-                  "sudo rm -rf /etc/hackingtool/;"
-                  "mkdir hackingtool;"
-                  "cd hackingtool;"
-                  "git clone https://github.com/Z4nzu/hackingtool.git;"
-                  "cd hackingtool;"
-                  "sudo chmod +x install.sh;"
-                  "./install.sh")
+        if not APP_INSTALL_DIR.exists():
+            console.print(f"[error]Install directory not found: {APP_INSTALL_DIR}[/error]")
+            console.print("[dim]Run install.py first.[/dim]")
+            return
+        console.print(f"[bold cyan]Pulling latest code from {REPO_URL}...[/bold cyan]")
+        result = subprocess.run(
+            ["git", "pull", "--rebase"],
+            cwd=str(APP_INSTALL_DIR),
+            capture_output=True, text=True,
+        )
+        if result.returncode != 0:
+            console.print(f"[error]git pull failed:\n{result.stderr}[/error]")
+            return
+        pip = str(APP_INSTALL_DIR / "venv" / "bin" / "pip")
+        if (APP_INSTALL_DIR / "venv" / "bin" / "pip").exists():
+            subprocess.run([pip, "install", "-q", "-r",
+                            str(APP_INSTALL_DIR / "requirements.txt")])
+        console.print("[success]✔ Hackingtool updated.[/success]")
 
 
 class UninstallTool(HackingTool):
     TITLE = "Uninstall HackingTool"
-    DESCRIPTION = "Uninstall HackingTool"
+    DESCRIPTION = "Remove hackingtool from system"
 
     def __init__(self):
-        super(UninstallTool, self).__init__([
-            ('Uninstall', self.uninstall)
+        super().__init__([
+            ("Uninstall", self.uninstall),
         ], installable=False, runnable=False)
 
     def uninstall(self):
-        console.print("hackingtool started to uninstall..\n")
+        import shutil
+        console.print("[warning]This will remove hackingtool from your system.[/warning]")
+        if not Confirm.ask("Continue?", default=False):
+            return
+
+        if APP_INSTALL_DIR.exists():
+            shutil.rmtree(str(APP_INSTALL_DIR))
+            console.print(f"[success]✔ Removed {APP_INSTALL_DIR}[/success]")
+        else:
+            console.print(f"[dim]{APP_INSTALL_DIR} not found — already removed?[/dim]")
+
+        if APP_BIN_PATH.exists():
+            APP_BIN_PATH.unlink()
+            console.print(f"[success]✔ Removed launcher {APP_BIN_PATH}[/success]")
+
+        if Confirm.ask(f"Also remove user data at {USER_CONFIG_DIR}?", default=False):
+            shutil.rmtree(str(USER_CONFIG_DIR), ignore_errors=True)
+            console.print(f"[success]✔ Removed {USER_CONFIG_DIR}[/success]")
+
+        console.print("[bold green]Hackingtool uninstalled. Goodbye.[/bold green]")
         sleep(1)
-        os.system("sudo chmod +x /etc/;"
-                  "sudo chmod +x /usr/share/doc;"
-                  "sudo rm -rf /usr/share/doc/hackingtool/;"
-                  "cd /etc/;"
-                  "sudo rm -rf /etc/hackingtool/;")
-        console.print("\n[bold green]Hackingtool Successfully Uninstalled... Goodbye.[/bold green]")
-        sys.exit()
+        sys.exit(0)
 
 
 class ToolManager(HackingToolsCollection):
     TITLE = "Update or Uninstall | Hackingtool"
     TOOLS = [
         UpdateTool(),
-        UninstallTool()
+        UninstallTool(),
     ]
-
-    def pretty_print(self):
-        table = Table(title="Tool Manager — Update / Uninstall", show_lines=True, expand=True)
-        table.add_column("Title", style="purple", no_wrap=True)
-        table.add_column("Description", style="purple")
-
-        for t in self.TOOLS:
-            desc = getattr(t, "DESCRIPTION", "") or ""
-            table.add_row(t.TITLE, desc.strip().replace("\n", " "))
-
-        panel = Panel(table, title="[purple]Available Manager Tools[/purple]", border_style="purple")
-        console.print(panel)
-
-    def show_options(self, parent=None):
-        console.print("\n")
-        panel = Panel.fit("[bold magenta]Tool Manager[/bold magenta]\nSelect an action to run.", border_style="purple")
-        console.print(panel)
-
-        table = Table(title="[bold cyan]Available Options[/bold cyan]", show_lines=True, expand=True)
-        table.add_column("Index", justify="center", style="bold yellow")
-        table.add_column("Tool Name", justify="left", style="bold green")
-        table.add_column("Description", justify="left", style="white")
-
-        for i, tool in enumerate(self.TOOLS):
-            title = getattr(tool, "TITLE", tool.__class__.__name__)
-            desc = getattr(tool, "DESCRIPTION", "—")
-            table.add_row(str(i + 1), title, desc)
-
-        table.add_row("[red]99[/red]", "[bold red]Exit[/bold red]", "Return to previous menu")
-        console.print(table)
-
-        try:
-            choice = int(Prompt.ask("[bold cyan]Select an option[/bold cyan]", default="99"))
-            if 1 <= choice <= len(self.TOOLS):
-                selected = self.TOOLS[choice - 1]
-                if hasattr(selected, "show_options"):
-                    selected.show_options(parent=self)
-                elif hasattr(selected, "run"):
-                    selected.run()
-                else:
-                    console.print("[bold yellow]Selected tool has no runnable interface.[/bold yellow]")
-            elif choice == 99:
-                return 99
-        except Exception:
-            console.print("[bold red]Invalid choice. Try again.[/bold red]")
-
-        return self.show_options(parent=parent)
 
 
 if __name__ == "__main__":
     manager = ToolManager()
-    manager.pretty_print()
     manager.show_options()
