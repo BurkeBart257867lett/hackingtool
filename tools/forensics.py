@@ -1,10 +1,4 @@
 import os
-import sys
-
-# Fetching parent directory for importing core.py
-current_dir = os.path.dirname(__file__)
-parent_dir = os.path.dirname(current_dir)
-sys.path.append(parent_dir)
 
 from core import HackingTool, HackingToolsCollection, console
 
@@ -40,6 +34,7 @@ class BulkExtractor(HackingTool):
     TITLE = "Bulk extractor"
     DESCRIPTION = "Extract useful information without parsing the file system"
     PROJECT_URL = "https://github.com/simsong/bulk_extractor"
+    SUPPORTED_OS = ["linux"]
 
     def __init__(self):
         super().__init__([
@@ -68,6 +63,7 @@ class BulkExtractor(HackingTool):
 class Guymager(HackingTool):
     TITLE = "Disk Clone and ISO Image Acquire"
     DESCRIPTION = "Guymager is a free forensic imager for media acquisition."
+    SUPPORTED_OS = ["linux"]
     INSTALL_COMMANDS = ["sudo apt install guymager"]
     RUN_COMMANDS = ["sudo guymager"]
     PROJECT_URL = "https://guymager.sourceforge.io/"
