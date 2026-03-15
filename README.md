@@ -2,101 +2,126 @@
 
 <img src="images/logo.svg" alt="HackingTool" width="600">
 
-<br>
+<br><br>
 
 **All-in-One Hacking Tool for Security Researchers & Pentesters**
 
-[![License](https://img.shields.io/github/license/Z4nzu/hackingtool?style=flat-square)](LICENSE)
-[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
-[![Version](https://img.shields.io/badge/version-2.0.0-brightgreen?style=flat-square)](#)
-[![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20Kali%20%7C%20Parrot%20%7C%20macOS-informational?style=flat-square)](#)
-[![Stars](https://img.shields.io/github/stars/Z4nzu/hackingtool?style=flat-square)](https://github.com/Z4nzu/hackingtool/stargazers)
-[![Forks](https://img.shields.io/github/forks/Z4nzu/hackingtool?style=flat-square)](https://github.com/Z4nzu/hackingtool/network/members)
-[![Issues](https://img.shields.io/github/issues/Z4nzu/hackingtool?style=flat-square)](https://github.com/Z4nzu/hackingtool/issues)
-[![Last Commit](https://img.shields.io/github/last-commit/Z4nzu/hackingtool?style=flat-square)](https://github.com/Z4nzu/hackingtool/commits/master)
+<br>
+
+[![License](https://img.shields.io/github/license/Z4nzu/hackingtool?style=for-the-badge&color=7B61FF)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![Version](https://img.shields.io/badge/version-2.0.0-00FF88?style=for-the-badge)](#)
+[![Platform](https://img.shields.io/badge/Linux%20%7C%20Kali%20%7C%20Parrot%20%7C%20macOS-informational?style=for-the-badge&logo=linux&logoColor=white&color=FFA116)](#)
+
+[![Stars](https://img.shields.io/github/stars/Z4nzu/hackingtool?style=for-the-badge&logo=github&color=yellow)](https://github.com/Z4nzu/hackingtool/stargazers)
+[![Forks](https://img.shields.io/github/forks/Z4nzu/hackingtool?style=for-the-badge&logo=git&color=blue)](https://github.com/Z4nzu/hackingtool/network/members)
+[![Issues](https://img.shields.io/github/issues/Z4nzu/hackingtool?style=for-the-badge&logo=target&color=red)](https://github.com/Z4nzu/hackingtool/issues)
+[![Last Commit](https://img.shields.io/github/last-commit/Z4nzu/hackingtool?style=for-the-badge&logo=github&color=00FF88)](https://github.com/Z4nzu/hackingtool/commits/master)
 
 <br>
 
-```
- 20 categories  ·  185+ tools  ·  Linux & macOS  ·  Rich terminal UI
-```
+<table>
+<tr>
+<td align="center"><b>20</b><br><sub>Categories</sub></td>
+<td align="center"><b>185+</b><br><sub>Tools</sub></td>
+<td align="center"><b>19</b><br><sub>Tags</sub></td>
+<td align="center"><b>2</b><br><sub>Platforms</sub></td>
+</tr>
+</table>
+
+<br>
+
+<a href="#installation"><img src="https://img.shields.io/badge/Get_Started-Install_Now-00FF88?style=for-the-badge&logo=rocket&logoColor=white" alt="Install Now"></a>
+&nbsp;
+<a href="#quick-commands"><img src="https://img.shields.io/badge/Quick_Commands-Reference-7B61FF?style=for-the-badge&logo=bookopen&logoColor=white" alt="Quick Commands"></a>
+&nbsp;
+<a href="https://github.com/Z4nzu/hackingtool/issues/new?template=tool_request.md"><img src="https://img.shields.io/badge/Suggest_a_Tool-Request-FF61DC?style=for-the-badge&logo=plus&logoColor=white" alt="Suggest a Tool"></a>
 
 </div>
 
 ---
 
-## What's New in v2.0.0
+<details open>
+<summary><h2>What's New in v2.0.0</h2></summary>
 
-| | Change |
-|---|---|
-| **Python** | 3.10+ required — all Python 2 code removed |
-| **OS-aware** | Linux-only tools hidden automatically on macOS |
-| **Archived** | Unmaintained tools moved to a separate sub-menu |
-| **Paths** | All `os.chdir()` bugs fixed — tools install to `~/.hackingtool/tools/` |
-| **Root** | No more `sudo git clone` — installs to user home |
-| **New tools** | 22 modern tools added across 6 categories |
-| **UI** | Rich terminal UI with shared theme — single consistent console |
-| **Menus** | Iterative navigation — no more recursion stack overflow |
-| **Docker** | Builds locally — no unverified external images |
-| **Deps** | `requirements.txt` cleaned — removed unused flask/boxes/lolcat/requests |
-| **Search** | Type `/` or `s` to search 185+ tools by name, description, or keyword |
-| **Tags** | Type `t` to filter by tag — osint, web, c2, cloud, mobile, wireless, and 13 more |
-| **Recommend** | Type `r` — "I want to scan a network" → shows relevant tools |
-| **Install status** | Each tool shows ✔ (installed) or ✘ (not installed) in the menu |
-| **Install all** | Option `97` in any category — install all tools at once |
-| **Update** | Each tool has an Update option — smart detection (git pull / pip upgrade / go install) |
-| **One-liner install** | `curl -sSL .../install.sh \| sudo bash` — no manual clone needed |
-| **3 new categories** | Active Directory, Cloud Security, Mobile Security |
-| **35 new tools** | BloodHound, Sliver, Impacket, Frida, Prowler, Subfinder, Gobuster, and 28 more |
+<table>
+<tr><td>
+
+| | Feature | Description |
+|:---:|---|---|
+| **🐍** | **Python 3.10+** | All Python 2 code removed, modern syntax throughout |
+| **🖥** | **OS-aware menus** | Linux-only tools hidden automatically on macOS |
+| **📦** | **185+ tools** | 35 new modern tools added across 6 categories |
+| **🔍** | **Search** | Type `/` to search all tools by name, description, or keyword |
+| **🏷** | **Tag filter** | Type `t` to filter by 19 tags — osint, web, c2, cloud, mobile... |
+| **💡** | **Recommend** | Type `r` — "I want to scan a network" → shows relevant tools |
+| **✅** | **Install status** | ✔/✘ shown next to every tool — know what's ready |
+| **⚡** | **Install all** | Option `97` in any category — batch install at once |
+| **🔄** | **Smart update** | Each tool has Update — auto-detects git pull / pip upgrade / go install |
+| **📂** | **Open folder** | Jump into any tool's directory for manual inspection |
+| **🐳** | **Docker** | Builds locally — no unverified external images |
+| **🚀** | **One-liner install** | `curl -sSL .../install.sh \| sudo bash` — zero manual steps |
+| **🏢** | **3 new categories** | Active Directory, Cloud Security, Mobile Security |
+
+</td></tr>
+</table>
+
+</details>
 
 ---
 
 ## Quick Commands
 
-| Command | What it does |
-|---|---|
-| `/` or `s` | Search all 185+ tools by name, description, or keyword |
-| `t` | Filter tools by tag (osint, scanner, c2, cloud, etc.) |
-| `r` | Recommend tools for a task ("scan a network", "crack passwords", ...) |
-| `?` | Quick help reference — works in every menu |
-| `q` | Quit from any menu level |
-| `97` | Install all tools in current category |
-| `99` | Go back to previous menu |
+<div align="center">
+
+| Command | Action | Works in |
+|:---:|---|:---:|
+| `/query` | **Search** — find tools instantly by keyword | Main menu |
+| `t` | **Tags** — filter by osint, scanner, c2, cloud, mobile... | Main menu |
+| `r` | **Recommend** — "I want to do X" → matching tools | Main menu |
+| `?` | **Help** — quick reference card | Everywhere |
+| `q` | **Quit** — exit from any depth | Everywhere |
+| `97` | **Install All** — batch install all tools in category | Category |
+| `99` | **Back** — return to previous menu | Everywhere |
+
+</div>
 
 ---
 
-## Tool Categories
+<details open>
+<summary><h2>Tool Categories</h2></summary>
 
-| # | Category | Tools |
-|---|---|:---:|
-| 1 | [Anonymously Hiding](#anonymously-hiding-tools) | 2 |
-| 2 | [Information Gathering](#information-gathering-tools) | 26 |
-| 3 | [Wordlist Generator](#wordlist-generator) | 7 |
-| 4 | [Wireless Attack](#wireless-attack-tools) | 13 |
-| 5 | [SQL Injection](#sql-injection-tools) | 7 |
-| 6 | [Phishing Attack](#phishing-attack-tools) | 17 |
-| 7 | [Web Attack](#web-attack-tools) | 20 |
-| 8 | [Post Exploitation](#post-exploitation-tools) | 10 |
-| 9 | [Forensics](#forensic-tools) | 8 |
-| 10 | [Payload Creation](#payload-creation-tools) | 8 |
-| 11 | [Exploit Framework](#exploit-framework) | 4 |
-| 12 | [Reverse Engineering](#reverse-engineering-tools) | 5 |
-| 13 | [DDOS Attack](#ddos-attack-tools) | 5 |
-| 14 | [RAT](#remote-administrator-tools-rat) | 1 |
-| 15 | [XSS Attack](#xss-attack-tools) | 9 |
-| 16 | [Steganography](#steganography-tools) | 4 |
-| 17 | [Active Directory](#active-directory-tools) | 6 |
-| 18 | [Cloud Security](#cloud-security-tools) | 4 |
-| 19 | [Mobile Security](#mobile-security-tools) | 3 |
-| 20 | [Other Tools](#other-tools) | 24 |
+<div align="center">
+
+| # | Category | Tools | | # | Category | Tools |
+|:---:|---|:---:|---|:---:|---|:---:|
+| 1 | [Anonymously Hiding](#anonymously-hiding-tools) | 2 | | 11 | [Exploit Framework](#exploit-framework) | 4 |
+| 2 | [Information Gathering](#information-gathering-tools) | 26 | | 12 | [Reverse Engineering](#reverse-engineering-tools) | 5 |
+| 3 | [Wordlist Generator](#wordlist-generator) | 7 | | 13 | [DDOS Attack](#ddos-attack-tools) | 5 |
+| 4 | [Wireless Attack](#wireless-attack-tools) | 13 | | 14 | [RAT](#remote-administrator-tools-rat) | 1 |
+| 5 | [SQL Injection](#sql-injection-tools) | 7 | | 15 | [XSS Attack](#xss-attack-tools) | 9 |
+| 6 | [Phishing Attack](#phishing-attack-tools) | 17 | | 16 | [Steganography](#steganography-tools) | 4 |
+| 7 | [Web Attack](#web-attack-tools) | 20 | | 17 | [Active Directory](#active-directory-tools) | 6 |
+| 8 | [Post Exploitation](#post-exploitation-tools) | 10 | | 18 | [Cloud Security](#cloud-security-tools) | 4 |
+| 9 | [Forensics](#forensic-tools) | 8 | | 19 | [Mobile Security](#mobile-security-tools) | 3 |
+| 10 | [Payload Creation](#payload-creation-tools) | 8 | | 20 | [Other Tools](#other-tools) | 24 |
+
+</div>
+
+</details>
 
 ---
 
-## Anonymously Hiding Tools
+<details>
+<summary><h2>Anonymously Hiding Tools</h2></summary>
+
 - [Anonymously Surf](https://github.com/Und3rf10w/kali-anonsurf)
 - [Multitor](https://github.com/trimstray/multitor)
+</details>
 
-## Information Gathering Tools
+<details>
+<summary><h2>Information Gathering Tools</h2></summary>
+
 - [Network Map (nmap)](https://github.com/nmap/nmap)
 - [Dracnmap](https://github.com/Screetsec/Dracnmap)
 - Port scanning
@@ -123,8 +148,11 @@
 - [Subfinder](https://github.com/projectdiscovery/subfinder) ★
 - [TruffleHog](https://github.com/trufflesecurity/trufflehog) ★
 - [Gitleaks](https://github.com/gitleaks/gitleaks) ★
+</details>
 
-## Wordlist Generator
+<details>
+<summary><h2>Wordlist Generator</h2></summary>
+
 - [Cupp](https://github.com/Mebus/cupp)
 - [WordlistCreator](https://github.com/Z4nzu/wlcreator)
 - [Goblin WordGenerator](https://github.com/UndeadSec/GoblinWordGenerator)
@@ -132,8 +160,11 @@
 - [Hashcat](https://github.com/hashcat/hashcat) ★
 - [John the Ripper](https://github.com/openwall/john) ★
 - [haiti](https://github.com/noraj/haiti) ★
+</details>
 
-## Wireless Attack Tools
+<details>
+<summary><h2>Wireless Attack Tools</h2></summary>
+
 - [WiFi-Pumpkin](https://github.com/P0cL4bs/wifipumpkin3)
 - [pixiewps](https://github.com/wiire/pixiewps)
 - [Bluetooth Honeypot (bluepot)](https://github.com/andrewmichaelsmith/bluepot)
@@ -147,8 +178,11 @@
 - [hcxdumptool](https://github.com/ZerBea/hcxdumptool) ★
 - [hcxtools](https://github.com/ZerBea/hcxtools) ★
 - [Bettercap](https://github.com/bettercap/bettercap) ★
+</details>
 
-## SQL Injection Tools
+<details>
+<summary><h2>SQL Injection Tools</h2></summary>
+
 - [Sqlmap](https://github.com/sqlmapproject/sqlmap)
 - [NoSqlMap](https://github.com/codingo/NoSQLMap)
 - [DSSS](https://github.com/stamparm/DSSS)
@@ -156,8 +190,11 @@
 - [Blisqy](https://github.com/JohnTroony/Blisqy)
 - [Leviathan](https://github.com/leviathan-framework/leviathan)
 - [SQLScan](https://github.com/Cvar1984/sqlscan)
+</details>
 
-## Phishing Attack Tools
+<details>
+<summary><h2>Phishing Attack Tools</h2></summary>
+
 - [Autophisher](https://github.com/CodingRanjith/autophisher)
 - [PyPhisher](https://github.com/KasRoudra/PyPhisher)
 - [AdvPhishing](https://github.com/Ignitetch/AdvPhishing)
@@ -175,8 +212,11 @@
 - [Maskphish](https://github.com/jaykali/maskphish)
 - [BlackPhish](https://github.com/iinc0gnit0/BlackPhish)
 - [dnstwist](https://github.com/elceef/dnstwist)
+</details>
 
-## Web Attack Tools
+<details>
+<summary><h2>Web Attack Tools</h2></summary>
+
 - [Web2Attack](https://github.com/santatic/web2attack)
 - Skipfish
 - [Sublist3r](https://github.com/aboul3la/Sublist3r)
@@ -196,8 +236,11 @@
 - [Arjun](https://github.com/s0md3v/Arjun) ★
 - [Caido](https://github.com/caido/caido) ★
 - [mitmproxy](https://github.com/mitmproxy/mitmproxy) ★
+</details>
 
-## Post Exploitation Tools
+<details>
+<summary><h2>Post Exploitation Tools</h2></summary>
+
 - [Vegile](https://github.com/Screetsec/Vegile)
 - [Chrome Keylogger](https://github.com/UndeadSec/HeraKeylogger)
 - [pwncat-cs](https://github.com/calebstewart/pwncat) ★
@@ -208,8 +251,11 @@
 - [Chisel](https://github.com/jpillora/chisel) ★
 - [Evil-WinRM](https://github.com/Hackplayers/evil-winrm) ★
 - [Mythic](https://github.com/its-a-feature/Mythic) ★
+</details>
 
-## Forensic Tools
+<details>
+<summary><h2>Forensic Tools</h2></summary>
+
 - Autopsy
 - Wireshark
 - [Bulk extractor](https://github.com/simsong/bulk_extractor)
@@ -218,8 +264,11 @@
 - [Volatility 3](https://github.com/volatilityfoundation/volatility3) ★
 - [Binwalk](https://github.com/ReFirmLabs/binwalk) ★
 - [pspy](https://github.com/DominicBreuker/pspy) ★
+</details>
 
-## Payload Creation Tools
+<details>
+<summary><h2>Payload Creation Tools</h2></summary>
+
 - [The FatRat](https://github.com/Screetsec/TheFatRat)
 - [Brutal](https://github.com/Screetsec/Brutal)
 - [Stitch](https://nathanlopez.github.io/Stitch)
@@ -228,31 +277,46 @@
 - [Spycam](https://github.com/indexnotfound404/spycam)
 - [Mob-Droid](https://github.com/kinghacker0/Mob-Droid)
 - [Enigma](https://github.com/UndeadSec/Enigma)
+</details>
 
-## Exploit Framework
+<details>
+<summary><h2>Exploit Framework</h2></summary>
+
 - [RouterSploit](https://github.com/threat9/routersploit)
 - [WebSploit](https://github.com/The404Hacking/websploit)
 - [Commix](https://github.com/commixproject/commix)
 - [Web2Attack](https://github.com/santatic/web2attack)
+</details>
 
-## Reverse Engineering Tools
+<details>
+<summary><h2>Reverse Engineering Tools</h2></summary>
+
 - [Androguard](https://github.com/androguard/androguard)
 - [Apk2Gold](https://github.com/lxdvs/apk2gold)
 - [JadX](https://github.com/skylot/jadx)
 - [Ghidra](https://github.com/NationalSecurityAgency/ghidra) ★
 - [Radare2](https://github.com/radareorg/radare2) ★
+</details>
 
-## DDOS Attack Tools
+<details>
+<summary><h2>DDOS Attack Tools</h2></summary>
+
 - [DDoS Script](https://github.com/the-deepnet/ddos)
 - [SlowLoris](https://github.com/gkbrk/slowloris)
 - [Asyncrone](https://github.com/fatihsnsy/aSYNcrone)
 - [UFOnet](https://github.com/epsylon/ufonet)
 - [GoldenEye](https://github.com/jseidl/GoldenEye)
+</details>
 
-## Remote Administrator Tools (RAT)
+<details>
+<summary><h2>Remote Administrator Tools (RAT)</h2></summary>
+
 - [Pyshell](https://github.com/knassar702/pyshell)
+</details>
 
-## XSS Attack Tools
+<details>
+<summary><h2>XSS Attack Tools</h2></summary>
+
 - [DalFox](https://github.com/hahwul/dalfox)
 - [XSS Payload Generator](https://github.com/capture0x/XSS-LOADER)
 - [Extended XSS Searcher](https://github.com/Damian89/extended-xss-search)
@@ -262,32 +326,46 @@
 - [XanXSS](https://github.com/Ekultek/XanXSS)
 - [XSStrike](https://github.com/UltimateHackers/XSStrike)
 - [RVuln](https://github.com/iinc0gnit0/RVuln)
+</details>
 
-## Steganography Tools
+<details>
+<summary><h2>Steganography Tools</h2></summary>
+
 - SteganoHide
 - [StegoCracker](https://github.com/W1LDN16H7/StegoCracker)
 - [Whitespace](https://github.com/beardog108/snow10)
+</details>
 
-## Active Directory Tools
+<details>
+<summary><h2>Active Directory Tools</h2></summary>
+
 - [BloodHound](https://github.com/BloodHoundAD/BloodHound) ★
 - [NetExec (nxc)](https://github.com/Pennyw0rth/NetExec) ★
 - [Impacket](https://github.com/fortra/impacket) ★
 - [Responder](https://github.com/lgandx/Responder) ★
 - [Certipy](https://github.com/ly4k/Certipy) ★
 - [Kerbrute](https://github.com/ropnop/kerbrute) ★
+</details>
 
-## Cloud Security Tools
+<details>
+<summary><h2>Cloud Security Tools</h2></summary>
+
 - [Prowler](https://github.com/prowler-cloud/prowler) ★
 - [ScoutSuite](https://github.com/nccgroup/ScoutSuite) ★
 - [Pacu](https://github.com/RhinoSecurityLabs/pacu) ★
 - [Trivy](https://github.com/aquasecurity/trivy) ★
+</details>
 
-## Mobile Security Tools
+<details>
+<summary><h2>Mobile Security Tools</h2></summary>
+
 - [MobSF](https://github.com/MobSF/Mobile-Security-Framework-MobSF) ★
 - [Frida](https://github.com/frida/frida) ★
 - [Objection](https://github.com/sensepost/objection) ★
+</details>
 
-## Other Tools
+<details>
+<summary><h2>Other Tools</h2></summary>
 
 #### SocialMedia Bruteforce
 - [AllinOne SocialMedia Attack](https://github.com/Matrix07ksa/Brute_Force)
@@ -330,37 +408,48 @@
 #### Mix Tools
 - Terminal Multiplexer (tilix)
 - [Crivo](https://github.com/GMDSantana/crivo)
+</details>
 
 ---
 
 ## Contributing — Add a New Tool
 
+<table>
+<tr>
+<td width="50%">
+
 ### Open an Issue
 
-> **Title format:** `[Tool Request] ToolName — Category`
-> Example: `[Tool Request] Subfinder — Information Gathering`
+> **Title:** `[Tool Request] ToolName — Category`
 
-Use the [Tool Request](.github/ISSUE_TEMPLATE/tool_request.md) issue template.
-Required fields: tool name, GitHub URL, category, supported OS, install command, reason for inclusion.
+Use the [Tool Request](.github/ISSUE_TEMPLATE/tool_request.md) template.
+
+Required: tool name, GitHub URL, category, OS, install command, reason.
+
+</td>
+<td width="50%">
 
 ### Open a Pull Request
 
-> **Title format:** `[New Tool] ToolName — Category`
-> Example: `[New Tool] Subfinder — Information Gathering`
+> **Title:** `[New Tool] ToolName — Category`
 
-Use the [PR template](.github/PULL_REQUEST_TEMPLATE.md) checklist. Key requirements:
+Use the [PR template](.github/PULL_REQUEST_TEMPLATE.md) checklist.
 
-1. Add your class to the right `tools/*.py` file
-2. Set `TITLE`, `DESCRIPTION`, `INSTALL_COMMANDS`, `RUN_COMMANDS`, `PROJECT_URL`
-3. Set `SUPPORTED_OS` — `["linux"]` or `["linux", "macos"]`
-4. Append the instance to `TOOLS` list in the collection at the bottom of the file
-5. Test install + run locally before submitting
+Required: class in `tools/*.py`, TITLE, DESCRIPTION, INSTALL/RUN commands, SUPPORTED_OS, test locally.
 
-Issues or PRs that **don't follow the title format** will be closed without review.
+</td>
+</tr>
+</table>
+
+> Issues or PRs that don't follow the title format will be closed without review.
 
 ---
 
 ## Installation
+
+<table>
+<tr>
+<td>
 
 ### One-liner (recommended)
 
@@ -368,76 +457,58 @@ Issues or PRs that **don't follow the title format** will be closed without revi
 curl -sSL https://raw.githubusercontent.com/Z4nzu/hackingtool/master/install.sh | sudo bash
 ```
 
-This handles everything — installs prerequisites, clones the repo, sets up a venv, and creates the `hackingtool` command.
+Handles everything — prerequisites, clone, venv, launcher.
 
-### Manual install
+</td>
+<td>
 
-```bash
-git clone https://github.com/Z4nzu/hackingtool.git
-cd hackingtool
-sudo python3 install.py   # detects local source, copies instead of re-cloning
-```
-
-Then run:
-```bash
-hackingtool
-```
-
-## Docker
-
-### Step 1 — Clone the repository
+### Manual
 
 ```bash
 git clone https://github.com/Z4nzu/hackingtool.git
 cd hackingtool
+sudo python3 install.py
 ```
 
-### Step 2 — Build the image
+Then run: `hackingtool`
+
+</td>
+</tr>
+</table>
+
+<details>
+<summary><h3>Docker</h3></summary>
 
 ```bash
+# Build
 docker build -t hackingtool .
-```
 
-> First build takes a few minutes (Kali base + apt packages). Subsequent builds are fast thanks to BuildKit layer caching.
-
-### Step 3 — Run
-
-**Option A — Direct (no Compose):**
-```bash
+# Run (direct)
 docker run -it --rm hackingtool
-```
 
-**Option B — With Docker Compose (recommended):**
-```bash
-# Start in background
+# Run (Compose — recommended)
 docker compose up -d
-
-# Open an interactive shell
 docker exec -it hackingtool bash
 
-# Then launch the tool inside the container
-python3 hackingtool.py
-```
-
-**Option C — Dev mode (live source mount, changes reflected without rebuild):**
-```bash
+# Dev mode (live source mount)
 docker compose --profile dev up
 docker exec -it hackingtool-dev bash
+
+# Stop
+docker compose down        # stop container
+docker compose down -v     # also remove data volume
 ```
 
-### Stopping
+</details>
 
-```bash
-docker compose down        # stop and remove container
-docker compose down -v     # also remove the tools data volume
-```
+### Requirements
 
-## Requirements
-
-- Python 3.10+
-- Linux (Kali, Parrot, Ubuntu) or macOS
-- Go 1.21+ *(for nuclei, ffuf, amass, httpx, katana, dalfox)*
-- Ruby *(for haiti)*
+| Dependency | Version | Needed for |
+|---|---|---|
+| Python | 3.10+ | Core |
+| Go | 1.21+ | nuclei, ffuf, amass, httpx, katana, dalfox, gobuster, subfinder |
+| Ruby | any | haiti, evil-winrm |
+| Docker | any | Mythic, MobSF (optional) |
 
 ```bash
 pip install -r requirements.txt
@@ -455,18 +526,24 @@ pip install -r requirements.txt
 
 ---
 
+<div align="center">
+
 ## Support
 
 If this project helps you, consider buying me a coffee:
 
-<a href="https://buymeacoffee.com/hardikzinzu" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="50"></a>
+<a href="https://buymeacoffee.com/hardikzinzu" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="60"></a>
 
-## Social
+<br><br>
 
-[![Twitter](https://img.shields.io/twitter/url?color=%231DA1F2&label=follow&logo=twitter&logoColor=%231DA1F2&style=flat-square&url=https%3A%2F%2Ftwitter.com%2F_Zinzu07)](https://twitter.com/_Zinzu07)
-[![GitHub](https://img.shields.io/badge/-GitHub-181717?style=flat-square&logo=github&link=https://github.com/Z4nzu/)](https://github.com/Z4nzu/)
+[![Twitter](https://img.shields.io/badge/Twitter-Follow-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/_Zinzu07)
+[![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Z4nzu/)
 
-> **Please don't use for illegal activity.**
+<br>
+
+> **For authorized security testing only.**
 > Thanks to all original authors of the tools included in hackingtool.
 
 Your favourite tool is not listed? [Suggest it here](https://github.com/Z4nzu/hackingtool/issues/new?template=tool_request.md)
+
+</div>
