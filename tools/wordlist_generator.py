@@ -92,13 +92,52 @@ class showme(HackingTool):
         console.print(panel)
 
 
+class Hashcat(HackingTool):
+    TITLE = "Hashcat (Password Cracker)"
+    DESCRIPTION = (
+        "World's fastest GPU/CPU password recovery tool — supports 300+ hash types.\n"
+        "Usage: hashcat -m 0 -a 0 hashes.txt wordlist.txt"
+    )
+    SUPPORTED_OS = ["linux"]
+    INSTALL_COMMANDS = ["sudo apt-get install -y hashcat"]
+    RUN_COMMANDS = ["hashcat --help"]
+    PROJECT_URL = "https://github.com/hashcat/hashcat"
+
+
+class JohnTheRipper(HackingTool):
+    TITLE = "John the Ripper"
+    DESCRIPTION = (
+        "Open-source password security auditing and recovery tool.\n"
+        "Usage: john --wordlist=wordlist.txt hashfile"
+    )
+    SUPPORTED_OS = ["linux"]
+    INSTALL_COMMANDS = ["sudo apt-get install -y john"]
+    RUN_COMMANDS = ["john --help"]
+    PROJECT_URL = "https://github.com/openwall/john"
+
+
+class Haiti(HackingTool):
+    TITLE = "haiti (Hash Type Identifier)"
+    DESCRIPTION = (
+        "Identify hash types — supports 300+ algorithms.\n"
+        "Usage: haiti <hash>"
+    )
+    REQUIRES_RUBY = True
+    INSTALL_COMMANDS = ["gem install haiti-hash"]
+    RUN_COMMANDS = ["haiti --help"]
+    PROJECT_URL = "https://github.com/noraj/haiti"
+
+
 class WordlistGeneratorTools(HackingToolsCollection):
     TITLE = "Wordlist Generator"
     TOOLS = [
         Cupp(),
         WlCreator(),
         GoblinWordGenerator(),
-        showme()
+        showme(),
+        Hashcat(),
+        JohnTheRipper(),
+        Haiti(),
     ]
 
     def show_info(self):

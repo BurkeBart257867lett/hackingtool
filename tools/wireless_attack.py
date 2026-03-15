@@ -154,6 +154,52 @@ class Howmanypeople(HackingTool):
     REQUIRES_WIFI = True
 
 
+class Airgeddon(HackingTool):
+    TITLE = "Airgeddon (Wireless Attack Suite)"
+    DESCRIPTION = (
+        "Multi-use bash script for auditing wireless networks.\n"
+        "Covers WPA/WPA2, WEP, WPS, PMKID, evil twin, handshake capture and more."
+    )
+    SUPPORTED_OS = ["linux"]
+    REQUIRES_WIFI = True
+    INSTALL_COMMANDS = [
+        "git clone https://github.com/v1s1t0r1sh3r3/airgeddon.git",
+    ]
+    RUN_COMMANDS = ["cd airgeddon && sudo bash airgeddon.sh"]
+    PROJECT_URL = "https://github.com/v1s1t0r1sh3r3/airgeddon"
+
+
+class Hcxdumptool(HackingTool):
+    TITLE = "hcxdumptool (PMKID Capture)"
+    DESCRIPTION = (
+        "Capture packets and PMKID hashes from WLAN devices.\n"
+        "Usage: hcxdumptool -i <iface> -o capture.pcapng --enable_status=1"
+    )
+    SUPPORTED_OS = ["linux"]
+    REQUIRES_WIFI = True
+    INSTALL_COMMANDS = [
+        "git clone https://github.com/ZerBea/hcxdumptool.git",
+        "cd hcxdumptool && make && sudo make install",
+    ]
+    RUN_COMMANDS = ["hcxdumptool --help"]
+    PROJECT_URL = "https://github.com/ZerBea/hcxdumptool"
+
+
+class Hcxtools(HackingTool):
+    TITLE = "hcxtools (PMKID/Hash Conversion)"
+    DESCRIPTION = (
+        "Convert captured WLAN packets to hashcat/JtR-compatible format.\n"
+        "Usage: hcxpcapngtool -o hashes.txt capture.pcapng"
+    )
+    SUPPORTED_OS = ["linux"]
+    INSTALL_COMMANDS = [
+        "git clone https://github.com/ZerBea/hcxtools.git",
+        "cd hcxtools && make && sudo make install",
+    ]
+    RUN_COMMANDS = ["hcxpcapngtool --help"]
+    PROJECT_URL = "https://github.com/ZerBea/hcxtools"
+
+
 class WirelessAttackTools(HackingToolsCollection):
     TITLE = "Wireless attack tools"
     TOOLS = [
@@ -166,6 +212,9 @@ class WirelessAttackTools(HackingToolsCollection):
         EvilTwin(),
         Fastssh(),
         Howmanypeople(),
+        Airgeddon(),
+        Hcxdumptool(),
+        Hcxtools(),
     ]
 
 

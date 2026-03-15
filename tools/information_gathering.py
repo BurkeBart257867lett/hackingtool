@@ -214,6 +214,98 @@ class Breacher(HackingTool):
         )
 
 
+class TheHarvester(HackingTool):
+    TITLE = "theHarvester (OSINT)"
+    DESCRIPTION = (
+        "Gather emails, names, subdomains, IPs and URLs from public sources.\n"
+        "Usage: theHarvester -d example.com -b all"
+    )
+    INSTALL_COMMANDS = [
+        "git clone https://github.com/laramies/theHarvester.git",
+        "cd theHarvester && pip install --user -r requirements/base.txt",
+    ]
+    RUN_COMMANDS = ["cd theHarvester && python3 theHarvester.py -h"]
+    PROJECT_URL = "https://github.com/laramies/theHarvester"
+
+
+class Amass(HackingTool):
+    TITLE = "Amass (Attack Surface Mapping)"
+    DESCRIPTION = (
+        "In-depth subdomain enumeration and attack surface mapping.\n"
+        "Usage: amass enum -d example.com"
+    )
+    SUPPORTED_OS = ["linux"]
+    REQUIRES_GO = True
+    INSTALL_COMMANDS = [
+        "go install -v github.com/owasp-amass/amass/v4/...@master",
+    ]
+    RUN_COMMANDS = ["amass -h"]
+    PROJECT_URL = "https://github.com/owasp-amass/amass"
+
+
+class Masscan(HackingTool):
+    TITLE = "Masscan (Fast Port Scanner)"
+    DESCRIPTION = (
+        "Fastest internet port scanner — 10 million packets/sec.\n"
+        "Usage: masscan -p1-65535 <IP> --rate=1000"
+    )
+    SUPPORTED_OS = ["linux"]
+    INSTALL_COMMANDS = ["sudo apt-get install -y masscan"]
+    RUN_COMMANDS = ["masscan --help"]
+    PROJECT_URL = "https://github.com/robertdavidgraham/masscan"
+
+
+class RustScan(HackingTool):
+    TITLE = "RustScan (Modern Port Scanner)"
+    DESCRIPTION = (
+        "Scans all 65k ports in 3 seconds, passes results to nmap automatically.\n"
+        "Usage: rustscan -a <IP> -- -sV"
+    )
+    SUPPORTED_OS = ["linux"]
+    INSTALL_COMMANDS = [
+        "curl -sLO https://github.com/RustScan/RustScan/releases/latest/download/rustscan_2.3.0_amd64.deb",
+        "sudo dpkg -i rustscan_2.3.0_amd64.deb",
+    ]
+    RUN_COMMANDS = ["rustscan --help"]
+    PROJECT_URL = "https://github.com/RustScan/RustScan"
+
+
+class Holehe(HackingTool):
+    TITLE = "Holehe (Email → Social Accounts)"
+    DESCRIPTION = (
+        "Check if an email address is registered on 120+ websites.\n"
+        "Usage: holehe user@example.com"
+    )
+    INSTALL_COMMANDS = ["pip install --user holehe"]
+    RUN_COMMANDS = ["holehe --help"]
+    PROJECT_URL = "https://github.com/megadose/holehe"
+
+
+class Maigret(HackingTool):
+    TITLE = "Maigret (Username OSINT)"
+    DESCRIPTION = (
+        "Collect a dossier on a person by username across 3000+ sites.\n"
+        "Usage: maigret <username>"
+    )
+    INSTALL_COMMANDS = ["pip install --user maigret"]
+    RUN_COMMANDS = ["maigret --help"]
+    PROJECT_URL = "https://github.com/soxoj/maigret"
+
+
+class Httpx(HackingTool):
+    TITLE = "httpx (HTTP Toolkit)"
+    DESCRIPTION = (
+        "Fast multi-purpose HTTP probing tool.\n"
+        "Usage: httpx -l urls.txt -status-code -title -tech-detect"
+    )
+    REQUIRES_GO = True
+    INSTALL_COMMANDS = [
+        "go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest",
+    ]
+    RUN_COMMANDS = ["httpx -h"]
+    PROJECT_URL = "https://github.com/projectdiscovery/httpx"
+
+
 class InformationGatheringTools(HackingToolsCollection):
     TITLE = "Information gathering tools"
     TOOLS = [
@@ -231,7 +323,14 @@ class InformationGatheringTools(HackingToolsCollection):
         SecretFinder(),
         Shodan(),
         PortScannerRanger(),
-        Breacher()
+        Breacher(),
+        TheHarvester(),
+        Amass(),
+        Masscan(),
+        RustScan(),
+        Holehe(),
+        Maigret(),
+        Httpx(),
     ]
 
 if __name__ == "__main__":

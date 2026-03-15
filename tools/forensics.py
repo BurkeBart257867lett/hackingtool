@@ -93,6 +93,41 @@ class Toolsley(HackingTool):
         super().__init__(installable=False, runnable=False)
 
 
+class Volatility3(HackingTool):
+    TITLE = "Volatility 3 (Memory Forensics)"
+    DESCRIPTION = (
+        "The world's most widely used memory forensics framework.\n"
+        "Usage: python3 vol.py -f memory.dmp windows.pslist"
+    )
+    INSTALL_COMMANDS = [
+        "git clone https://github.com/volatilityfoundation/volatility3.git",
+        "cd volatility3 && pip install --user -r requirements.txt",
+    ]
+    PROJECT_URL = "https://github.com/volatilityfoundation/volatility3"
+
+    def run(self):
+        from config import get_tools_dir
+        import subprocess
+        from rich.prompt import Prompt
+        dump = Prompt.ask("Enter path to memory dump")
+        plugin = Prompt.ask("Enter plugin", default="windows.pslist")
+        subprocess.run(
+            ["python3", "vol.py", "-f", dump, plugin],
+            cwd=str(get_tools_dir() / "volatility3"),
+        )
+
+
+class Binwalk(HackingTool):
+    TITLE = "Binwalk (Firmware Analysis)"
+    DESCRIPTION = (
+        "Analyze, reverse engineer, and extract firmware images.\n"
+        "Usage: binwalk -e firmware.bin"
+    )
+    INSTALL_COMMANDS = ["pip install --user binwalk"]
+    RUN_COMMANDS = ["binwalk --help"]
+    PROJECT_URL = "https://github.com/ReFirmLabs/binwalk"
+
+
 class ForensicTools(HackingToolsCollection):
     TITLE = "Forensic tools"
     TOOLS = [
@@ -100,7 +135,9 @@ class ForensicTools(HackingToolsCollection):
         Wireshark(),
         BulkExtractor(),
         Guymager(),
-        Toolsley()
+        Toolsley(),
+        Volatility3(),
+        Binwalk(),
     ]
 
 if __name__ == "__main__":

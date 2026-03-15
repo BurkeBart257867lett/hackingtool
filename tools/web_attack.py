@@ -109,6 +109,90 @@ class Dirb(HackingTool):
         subprocess.run(["sudo", "dirb", uinput])
 
 
+class Nuclei(HackingTool):
+    TITLE = "Nuclei (Vulnerability Scanner)"
+    DESCRIPTION = (
+        "Fast, template-based vulnerability scanner used by 50k+ security teams.\n"
+        "Usage: nuclei -u https://example.com"
+    )
+    REQUIRES_GO = True
+    INSTALL_COMMANDS = [
+        "go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest",
+        "nuclei -update-templates",
+    ]
+    RUN_COMMANDS = ["nuclei -h"]
+    PROJECT_URL = "https://github.com/projectdiscovery/nuclei"
+
+
+class Ffuf(HackingTool):
+    TITLE = "ffuf (Web Fuzzer)"
+    DESCRIPTION = (
+        "Fast web fuzzer — content discovery, parameter fuzzing, vhost discovery.\n"
+        "Usage: ffuf -w wordlist.txt -u https://example.com/FUZZ"
+    )
+    REQUIRES_GO = True
+    INSTALL_COMMANDS = [
+        "go install -v github.com/ffuf/ffuf/v2@latest",
+    ]
+    RUN_COMMANDS = ["ffuf -h"]
+    PROJECT_URL = "https://github.com/ffuf/ffuf"
+
+
+class Feroxbuster(HackingTool):
+    TITLE = "Feroxbuster (Directory Brute Force)"
+    DESCRIPTION = (
+        "Fast, recursive content discovery tool written in Rust.\n"
+        "Usage: feroxbuster -u https://example.com -w wordlist.txt"
+    )
+    SUPPORTED_OS = ["linux"]
+    INSTALL_COMMANDS = [
+        "curl -sL https://raw.githubusercontent.com/epi052/feroxbuster/main/install-nix.sh "
+        "| sudo bash -s /usr/local/bin",
+    ]
+    RUN_COMMANDS = ["feroxbuster -h"]
+    PROJECT_URL = "https://github.com/epi052/feroxbuster"
+
+
+class Nikto(HackingTool):
+    TITLE = "Nikto (Web Server Scanner)"
+    DESCRIPTION = (
+        "Scan web servers for dangerous files, outdated software, misconfigurations.\n"
+        "Usage: nikto -h https://example.com"
+    )
+    SUPPORTED_OS = ["linux"]
+    INSTALL_COMMANDS = ["sudo apt-get install -y nikto"]
+    RUN_COMMANDS = ["nikto -Help"]
+    PROJECT_URL = "https://github.com/sullo/nikto"
+
+
+class Wafw00f(HackingTool):
+    TITLE = "wafw00f (WAF Detector)"
+    DESCRIPTION = (
+        "Fingerprint and identify Web Application Firewalls (WAF).\n"
+        "Usage: wafw00f https://example.com"
+    )
+    INSTALL_COMMANDS = [
+        "git clone https://github.com/EnableSecurity/wafw00f.git",
+        "cd wafw00f && pip install --user .",
+    ]
+    RUN_COMMANDS = ["wafw00f --help"]
+    PROJECT_URL = "https://github.com/EnableSecurity/wafw00f"
+
+
+class Katana(HackingTool):
+    TITLE = "Katana (Web Crawler)"
+    DESCRIPTION = (
+        "Next-generation crawling and spidering framework from ProjectDiscovery.\n"
+        "Usage: katana -u https://example.com"
+    )
+    REQUIRES_GO = True
+    INSTALL_COMMANDS = [
+        "go install -v github.com/projectdiscovery/katana/cmd/katana@latest",
+    ]
+    RUN_COMMANDS = ["katana -h"]
+    PROJECT_URL = "https://github.com/projectdiscovery/katana"
+
+
 class WebAttackTools(HackingToolsCollection):
     TITLE = "Web Attack tools"
     DESCRIPTION = ""
@@ -119,7 +203,13 @@ class WebAttackTools(HackingToolsCollection):
         CheckURL(),
         Blazy(),
         SubDomainTakeOver(),
-        Dirb()
+        Dirb(),
+        Nuclei(),
+        Ffuf(),
+        Feroxbuster(),
+        Nikto(),
+        Wafw00f(),
+        Katana(),
     ]
 
 if __name__ == "__main__":
