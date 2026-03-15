@@ -121,6 +121,7 @@ def show_help():
             ("  ─────────────────────────────────────\n", "dim"),
             ("  1–20   ", "bold cyan"), ("open a category\n", "white"),
             ("  21     ", "bold cyan"), ("Update / Uninstall hackingtool\n", "white"),
+            ("  / or s ", "bold cyan"), ("search tools by name or keyword\n", "white"),
             ("  ?      ", "bold cyan"), ("show this help\n", "white"),
             ("  q      ", "bold cyan"), ("quit hackingtool\n\n", "white"),
             ("  Inside a category\n", "bold white"),
@@ -305,18 +306,94 @@ def build_menu():
     ))
 
     # ── ToolManager row ──
+    tm_num = len(categories) + 1
     console.print(
-        f"  [bold magenta]  18[/bold magenta]  {update_def[1]}  "
+        f"  [bold magenta]  {tm_num}[/bold magenta]  {update_def[1]}  "
         f"[magenta]{update_def[2]}[/magenta]"
     )
 
     # ── Hint bar ──
     console.print(Rule(style="dim magenta"))
     console.print(
-        "  [dim]Enter number to open  ·  "
+        "  [dim]Enter number  ·  "
+        "[bold cyan]/[/bold cyan] search  ·  "
         "[bold cyan]?[/bold cyan] help  ·  "
         "[bold cyan]q[/bold cyan] quit[/dim]\n"
     )
+
+
+# ── Search ─────────────────────────────────────────────────────────────────────
+
+def _collect_all_tools() -> list[tuple]:
+    """Walk all collections and return (tool_instance, category_name) pairs."""
+    from core import HackingTool, HackingToolsCollection
+    results = []
+
+    def _walk(items, parent_title=""):
+        for item in items:
+            if isinstance(item, HackingToolsCollection):
+                _walk(item.TOOLS, item.TITLE)
+            elif isinstance(item, HackingTool):
+                results.append((item, parent_title))
+
+    _walk(all_tools)
+    return results
+
+
+def search_tools():
+    """Interactive search — user types query, results update, select to jump."""
+    query = Prompt.ask("[bold cyan]/ Search[/bold cyan]", default="").strip().lower()
+    if not query:
+        return
+
+    all_tool_list = _collect_all_tools()
+
+    # Match against title + description
+    matches = []
+    for tool, category in all_tool_list:
+        title = (tool.TITLE or "").lower()
+        desc = (tool.DESCRIPTION or "").lower()
+        if query in title or query in desc:
+            matches.append((tool, category))
+
+    if not matches:
+        console.print(f"[dim]No tools found matching '{query}'[/dim]")
+        Prompt.ask("[dim]Press Enter to return[/dim]", default="")
+        return
+
+    # Display results
+    table = Table(
+        title=f"Search results for '{query}'",
+        box=box.SIMPLE_HEAD, show_lines=True,
+    )
+    table.add_column("No.", justify="center", style="bold cyan", width=5)
+    table.add_column("Tool", style="bold yellow", min_width=20)
+    table.add_column("Category", style="magenta", min_width=15)
+    table.add_column("Description", style="white", overflow="fold")
+
+    for i, (tool, cat) in enumerate(matches, start=1):
+        desc = (tool.DESCRIPTION or "—").splitlines()[0]
+        table.add_row(str(i), tool.TITLE, cat, desc)
+
+    table.add_row("99", "Back to main menu", "", "")
+    console.print(table)
+
+    raw = Prompt.ask("[bold cyan]>[/bold cyan]", default="").strip().lower()
+    if not raw or raw == "99":
+        return
+
+    try:
+        idx = int(raw)
+    except ValueError:
+        return
+
+    if 1 <= idx <= len(matches):
+        tool, cat = matches[idx - 1]
+        console.print(Panel(
+            f"[bold magenta]{tool.TITLE}[/bold magenta]  [dim]({cat})[/dim]",
+            border_style="magenta", box=box.ROUNDED,
+        ))
+        tool.show_options()
 
 
 # ── Main interaction loop ──────────────────────────────────────────────────────
@@ -332,6 +409,10 @@ def interact_menu():
 
             if raw in ("?", "help"):
                 show_help()
+                continue
+
+            if raw.startswith("/") or raw in ("s", "search"):
+                search_tools()
                 continue
 
             if raw in ("q", "quit", "exit"):
