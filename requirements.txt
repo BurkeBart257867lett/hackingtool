@@ -1,5 +1,14 @@
-# Python dependencies for hackingtool
-# boxes and lolcat are system CLI tools, not pip packages — install via apt/brew
-# flask is unused — removed
-# requests is unused at runtime — removed
-rich>=13.0.0
+# Core dependencies for hackingtool
+
+# Terminal UI and display
+colorama>=0.4.6
+pyfiglet>=0.8.post1
+
+# System utilities
+psutil>=5.9.0
+
+# Network utilities
+requests>=2.28.0
+
+# Package management helpers
+pip>=22.0
