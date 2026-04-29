@@ -15,3 +15,4 @@ pip>=22.0
 
 # Additional utilities (added for personal use)
 pretty-errors>=1.2.25  # nicer tracebacks during development/debugging
+rich>=13.0.0           # better terminal output / tables for personal experiments
