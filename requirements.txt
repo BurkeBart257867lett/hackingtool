@@ -19,3 +19,8 @@ rich>=13.0.0           # better terminal output / tables for personal experiment
 
 # Dev/testing tools (personal fork only -- not needed for normal usage)
 ipython>=8.0.0         # interactive shell for quick testing and exploration
+
+# NOTE: to install only core deps (without personal/dev extras), run:
+#   pip install colorama pyfiglet psutil requests
+# To install everything (including dev tools):
+#   pip install -r requirements.txt
